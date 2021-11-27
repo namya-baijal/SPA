@@ -118,6 +118,7 @@ def get_ballistic_vectors_vec(data, velocity_data, tracer_idxs, time_idxs, h_lau
     azimuth_deg = np.rad2deg(azimuth)
 
     # range between the launch and impact
+    # namya made a change
     d = abs((((np.square(velocity_data['v_result'][tracer_idxs, time_idxs]) * np.sin(2 * theta_launch_rad)) / g) / (
         np.sqrt(1 - (2 - np.square(v_tilda)) * np.square(v_tilda) * (np.square(np.cos(theta_launch_rad))))))
         + (np.full(theta_launch_rad.shape, h_launch) / np.tan(theta_launch_rad)))
