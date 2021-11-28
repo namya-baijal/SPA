@@ -13,6 +13,7 @@ def load_ballistic_data(file, end = -1):
     ymark = data['ymark'][:, :end]  # y coordinate
     zmark = data['zmark'][:, :end] + 1775  # z coordinate
     trm = np.round(data['TrM'], 0)
+    trp = data['TrP']
     time = data['time'][:end]
     r = np.sqrt(xmark ** 2 + ymark ** 2 + zmark ** 2)
     phi = np.arctan2(-xmark, np.maximum(ymark, 1e-12)) + np.pi / 2
@@ -21,7 +22,7 @@ def load_ballistic_data(file, end = -1):
     theta_deg = np.rad2deg(theta)
 
     return {'xmark': xmark, 'ymark': ymark, 'zmark': zmark, 'trm': trm, 'time': time,
-            'r': r, 'phi': phi_deg, 'theta': theta_deg}
+            'r': r, 'phi': phi_deg, 'theta': theta_deg, 'trp': trp}
 
 
 def get_average_time(data):
