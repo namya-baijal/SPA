@@ -22,8 +22,15 @@ def load_ballistic_data(file, end = -1):
     theta_deg = np.rad2deg(theta)
 
     return {'xmark': xmark, 'ymark': ymark, 'zmark': zmark, 'trm': trm, 'time': time,
-            'r': r, 'phi': phi_deg, 'theta': theta_deg, 'trp': trp}
+            'r': r, 'phi': phi_deg, 'theta': theta_deg , 'trp': trp}
 
+
+def get_initial_depth(data, tracer_idxs):
+
+    r0 = data['r'][tracer_idxs, 0]
+    depth = 1750 - r0
+
+    return {'depth': depth}
 
 def get_average_time(data):
     """
