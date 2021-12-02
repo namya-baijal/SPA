@@ -12,25 +12,26 @@ def load_ballistic_data(file, end = -1):
     xmark = data['xmark'][:, :end]  # x coordinate
     ymark = data['ymark'][:, :end]  # y coordinate
     zmark = data['zmark'][:, :end] + 1775  # z coordinate
-    trm = np.round(data['TrM'], 0)
-    trp = data['TrP']
-    time = data['time'][:end]
-    r = np.sqrt(xmark ** 2 + ymark ** 2 + zmark ** 2)
-    phi = np.arctan2(-xmark, np.maximum(ymark, 1e-12)) + np.pi / 2
+    trm = np.round(data['TrM'], 0)  #tracer material
+    trp = data['TrP']  #tracer pressure
+    time = data['time'][:end]  #time steps array
+    r = np.sqrt(xmark ** 2 + ymark ** 2 + zmark ** 2)  #radial distance
+    depth = 1750 - r[:, 0]  #initial depth of tracer
+    vol1 = 4/3 * np.pi * (r + (5/2))**3  #volume of r1 of a cell
+    vol2 = 4/3 * np.pi * (r - (5/2))**3  #volume of r2 of a cell
+    vol_shell = (vol1 - vol2)  #volume of shell
+    vol_target = vol_shell * np.square(np.deg2rad(1)/ (2 * np.pi))  #volume of moon target
+    volume = np.zeros(r.shape)
+    volume[trm <= 2] = vol_target
+    volume[trm >= 3] = 125
+    phi = np.arctan2(-xmark, np.maximum(ymark, 1e-12)) + np.pi / 2  #calculating phi spherical coord
     phi_deg = np.rad2deg(phi)
-    theta = np.arccos(zmark / r)
+    theta = np.arccos(zmark / r)  #calculating theta spherical coord
     theta_deg = np.rad2deg(theta)
 
     return {'xmark': xmark, 'ymark': ymark, 'zmark': zmark, 'trm': trm, 'time': time,
-            'r': r, 'phi': phi_deg, 'theta': theta_deg , 'trp': trp}
+            'r': r, 'phi': phi_deg, 'theta': theta_deg , 'trp': trp, 'depth': depth, 'volume': volume}
 
-
-def get_initial_depth(data, tracer_idxs):
-
-    r0 = data['r'][tracer_idxs, 0]
-    depth = 1750 - r0
-
-    return {'depth': depth}
 
 def get_average_time(data):
     """
