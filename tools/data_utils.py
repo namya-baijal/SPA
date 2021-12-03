@@ -1,6 +1,29 @@
 import numpy as np
 from scipy.signal import medfilt
 
+
+def calc_vol(x0, y0, z0, offset, dtheta=1, dphi=1, dr=5):
+
+    # first, rotate x and z coords because of offset in setup
+    xr = x0 * np.cos(np.radians(offset)) - z0 * np.sin(np.radians(offset))
+    zr = x0 * np.sin(np.radians(offset)) + z0 * np.cos(np.radians(offset))
+    # y doesn't need rotating
+    yr = y0
+
+    # Calculate spherical coords in new rotated frame
+    rr = np.sqrt(xr ** 2 + yr ** 2 + zr ** 2)
+    thetar = np.arccos(zr / rr)
+    phir = np.arctan2(yr, xr)
+
+    # use these coords to calculate element volumes
+    vol = rr ** 2 * np.sin(thetar) * dr * np.radians(dtheta) * np.radians(dphi)
+
+    # adjust tracers in impactor with fixed vol
+    vol[rr > 1750] = 125
+
+    return vol
+
+
 def load_ballistic_data(file, end = -1):
     """
     Loads the numpy arrays as dictionaries. Returns time, cartesian, and spherical coordinates for all the tracers at every time step.
@@ -21,10 +44,7 @@ def load_ballistic_data(file, end = -1):
     phi_deg = np.rad2deg(phi)
     theta = np.arccos(zmark / r)  #calculating theta spherical coord
     theta_deg = np.rad2deg(theta)
-    vol_target = np.square(r) * np.sin(theta) * 5 * np.radians(1) * np.radians(1) # volume of moon target
-    volume = np.zeros(vol_target.shape)
-    volume[trm <= 2] = vol_target[trm <= 2]
-    volume[trm >= 3] = 125
+    volume = calc_vol(xmark, ymark, zmark, offset= -15)
 
     return {'xmark': xmark, 'ymark': ymark, 'zmark': zmark, 'trm': trm, 'time': time,
             'r': r, 'phi': phi_deg, 'theta': theta_deg , 'trp': trp, 'depth': depth, 'volume': volume}
