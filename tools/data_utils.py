@@ -44,7 +44,7 @@ def load_ballistic_data(file, end = -1):
     phi_deg = np.rad2deg(phi)
     theta = np.arccos(zmark / r)  #calculating theta spherical coord
     theta_deg = np.rad2deg(theta)
-    volume = calc_vol(xmark, ymark, zmark, offset= -15)
+    volume = calc_vol(xmark[:, 0], ymark[:, 0], zmark[:, 0], offset= -15)
 
     return {'xmark': xmark, 'ymark': ymark, 'zmark': zmark, 'trm': trm, 'time': time,
             'r': r, 'phi': phi_deg, 'theta': theta_deg , 'trp': trp, 'depth': depth, 'volume': volume}
