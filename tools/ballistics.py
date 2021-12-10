@@ -235,5 +235,25 @@ def parabolic_path(tracer_idx, time_idx, theta_launch, beta, data, velocity_data
     return sx, sz
 
 
+def haversine_moon(lat1, long1, lat2, long2):
+
+    """
+    Calculates the great circle distance between two points on the moon. Also calculates the bearing from point 1 to point 2.
+    Takes the input starting and ending lat, lons in degrees.
+
+    """
+    lat1 = np.deg2rad(lat1)
+    long1 = np.deg2rad(long1)
+    lat2 = np.deg2rad(lat2)
+    long2 = np.deg2rad(long2)
+    radius = 1750  #radius of the moon
+    distance = 2 * radius * np.arcsin(np.sqrt(np.square(np.sin(lat2-lat1))+ ((1-np.square(np.sin(lat2-lat1))) - np.square(np.sin(lat2+lat1)))* np.square((long2-long1)/2)))
+    num = (np.cos(lat2)* np.sin(long2 -long1))
+    denom = (np.cos(lat1)* np.sin(lat2)) - (np.sin(lat1)*np.cos(lat2)* np.cos(long2-long1))
+    bearing = np.arctan(num/denom)
+
+    return distance, bearing
+
+
 
 
