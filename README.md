@@ -34,9 +34,14 @@ This notebook creates 2x2 degree equal surface area bins. The layer thickness is
 
 ### Radial Profile (radial_profile.ipynb)
 
-This notebook creates ejecta thickness as a function of depth of origin along a 45 degree radial line from the SPA basin center with inverted stratigraphy. 
+This notebook creates ejecta thickness as a function of depth of origin along a 45 degree radial line from the SPA basin center with inverted stratigraphy. This notebook filters tracers with azimuth between 40-50 and bins these by radial distance. The histogram is divided by surface area as before to produce the layer thickness data.
+
+![radial_plot_45_bearing_v15](https://user-images.githubusercontent.com/57348392/147741051-c093b199-d786-4faa-ac35-6d1faeb913bf.png)
+
 
 ### Find Location (find_loc.ipynb)
+
+This notebook calculates the great circle distance and bearing between any two latitude longitude coordinates on a sphere using the haversine formula.
 
 
 
