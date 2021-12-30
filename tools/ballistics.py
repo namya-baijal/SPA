@@ -71,7 +71,6 @@ def get_ballistic_vectors(data, velocity_data, tracer_idx, time_idx, h_launch):
     alpha = np.arcsin(velocity_data['v_z'] / (velocity_data['v_result'] + 1e-12))
     alpha_deg = np.rad2deg(alpha)
 
-
     theta_launch = alpha_deg[tracer_idx, time_idx] + beta_deg[tracer_idx, time_idx]
     theta_launch_rad = np.deg2rad(theta_launch)
 
@@ -128,6 +127,7 @@ def get_ballistic_vectors_vec(data, velocity_data, tracer_idxs, time_idxs, h_lau
                 1 - np.square(v_tilda) + np.sqrt(1 - (2 - np.square(v_tilda)) * np.square(v_tilda) * (np.square(np.cos(theta_launch_rad)))))
 
     return theta_launch, height, d, azimuth_deg
+
 
 def track(lat, lon, bearing, distance):
     """Update longitude and latitude data given an initial
@@ -220,6 +220,7 @@ def track_vec(lat, lon, bearing, distance):
     return (np.squeeze(final_lat * 180 / np.pi),
             np.squeeze(final_lon * 180 / np.pi))
 
+
 def parabolic_path(tracer_idx, time_idx, theta_launch, beta, data, velocity_data, g):
     t = np.linspace(0, 1000, 501)
      # convert from time idx to timestep
@@ -254,7 +255,7 @@ def haversine_moon(lat1, long1, lat2, long2):
     distance = 2 * 1750 * np.arcsin(t)
     num = (np.cos(lat2) * np.sin(long2 - long1))
     denom = (np.cos(lat1) * np.sin(lat2)) - (np.sin(lat1) * np.cos(lat2) * np.cos(long2 - long1))
-    bearing = np.arctan(num / denom)
+    bearing = np.arctan2(num ,denom)
 
     return distance, bearing
 
