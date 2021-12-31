@@ -7,7 +7,7 @@ functions for computing launch parameters and tracking tracers
 utility code for accessing and converting tracer data
 
 ### plotting.py 
-funcitons used for plotting tracer data
+functions used for plotting tracer data
 
 ### find_tracer.py 
 functions for filtering tracers 
