@@ -4,7 +4,7 @@
 
 GitHub repository for SPA impact crater ejecta analysis using iSALE3D hydrocode.
 
-The main objective of this project is to determine the distribution of impact ejecta during the excavation stage of the impact. The model parameters for the analysis are listed in the table below. Two evaluation scenarios are analyzed: 50 K/km (hotter) with 10 km/s impact velocity and 10 K/km (colder) with 15 km/s impact velocity. Data from the first 400 steps of the simulations is used for the analysis.
+The main objective of this project is to determine the distribution of impact ejecta during the excavation stage of the impact. The model parameters for the analysis are listed in the table below. Two evaluation scenarios are analysed: 50 K/km (hotter) with 10 km/s impact velocity and 10 K/km (colder) with 15 km/s impact velocity. Data from the first 400 steps of the simulations is used for the analysis.
 
 ![Screenshot from 2021-12-30 01-20-51](https://user-images.githubusercontent.com/57348392/147739919-f094713d-97d8-4b1d-867e-7ad381a88a1c.png)
 
