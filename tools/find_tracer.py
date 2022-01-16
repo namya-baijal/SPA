@@ -49,6 +49,15 @@ def BallisticCheck(data, tracer_idx, h_launch):
         return True, time_idx
 
 def BallisticCheckVec(data, h_launch):
+    """
+       Vectorised function to determine if the ejecta follows a ballistic trajectory. If the particle gets to a radial distance  > launch height above the lunar surface,
+       it is classified as ballistic. Returns True/False and the first time step index at which the condition is satisfied for all tracers in the datafile.
+
+       :param data:
+       :param tracer_idx:
+       :param h_launch:
+
+       """
     r_vals = data['r'][:, :]
 
     r_vals[:, :8] = 0
