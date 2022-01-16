@@ -8,7 +8,7 @@ def TrajectoryPlotCartesian(data, tracer_idx):
     trajectory_z = data['zmark'][tracer_idx, :]
     still_in_mesh = trajectory_x < 2000
     fig, ax = plt.subplots()
-    ax.scatter(trajectory_x[still_in_mesh], trajectory_z[still_in_mesh], marker='x', label=tracer_idx, c='m', zorder=2)
+    ax.scatter(trajectory_x[still_in_mesh], trajectory_z[still_in_mesh], marker='x', label=tracer_idx, c='m', zorder=2, s = 10)
     Moon = plt.Circle((0, 0), 1750, color='gray', zorder=1, alpha=0.6, label='Lunar surface')
     ax.add_patch(Moon)
     ax.set_aspect('equal')
@@ -58,6 +58,6 @@ def MotionGraphs(average_time, radial_distance_data, radial_velocity_data, radia
     ax[2].set_xlabel('t (s)')
 
     plt.suptitle('Graphs: Radial Displacement, Velocity, Acceleration')
-    plt.show()
+
 
 
