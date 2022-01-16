@@ -3,6 +3,10 @@ from .find_tracer import *
 
 
 def get_launch_vector(data, velocity_data, tracer_idx, time_idx):
+    """
+     Function to calculate the launch parameters and determine launch longitude, latitude for a single tracer.
+
+     """
     longitude = data['phi'][tracer_idx, time_idx]
     theta = data['theta'][tracer_idx, time_idx]
     if theta <= 90:
@@ -16,6 +20,11 @@ def get_launch_vector(data, velocity_data, tracer_idx, time_idx):
 
 
 def get_launch_vector_vec(data, velocity_data, tracer_idxs, time_idxs):
+    """
+     Function to calculate the launch parameters and determine launch longitude, latitude for all tracers passing ballistic check.
+
+     """
+
     longitude = data['phi'][tracer_idxs, time_idxs]
     theta = data['theta'][tracer_idxs, time_idxs]
     N = np.where(theta <= 90)[0]
