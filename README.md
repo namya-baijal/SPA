@@ -21,22 +21,24 @@ This notebook filters the simulation data file and generates an output csv file 
 Takes in the mirror csv file and generates the ejecta distribution on mollweide projection. Tracers are filtered by ejection velocity and target and impactor
 material.
 
-![p1](https://user-images.githubusercontent.com/57348392/147739872-cce30c95-eccf-4c4e-82fa-8868822099ff.png)
+![material_map_v10_mollweide](https://user-images.githubusercontent.com/57348392/149660945-32fdf00c-eafe-46a1-b3a8-1fe5ee1eb1cf.png)
 
-![p2](https://user-images.githubusercontent.com/57348392/147739856-c223032d-88c2-41a8-bedb-80ee3b17415f.png)
+![velocity_map](https://user-images.githubusercontent.com/57348392/149660965-21ba0297-4524-42a3-8d1f-1ade65aa43d4.png)
 
 ### Layer Thickness Distribution (binning_histogram.ipynb)
 
 This notebook creates 2x2 degree equal surface area bins. The layer thickness is determined by computing the histogram of landed ejecta volume and dividing by the surface area of the bins. The plots are filtered by depth of origin and shock pressure of ejecta particles.
 
-![v15_troctolite](https://user-images.githubusercontent.com/57348392/147740488-fbd596f7-2791-4063-b8c6-fd624409760b.png)
+
+
+![v15_troctolite](https://user-images.githubusercontent.com/57348392/149661040-40835266-3aca-4bcf-9417-77300a87571a.png)
+
 
 ### Radial Profile (radial_profile.ipynb)
 
 This notebook creates ejecta thickness as a function of depth of origin along a 45 degree radial line from the SPA basin center with inverted stratigraphy. This notebook filters tracers with azimuth between 40-50 and bins these by radial distance. The histogram is divided by surface area as before to produce the layer thickness data.
 
-![radial_plot_45_bearing_v15](https://user-images.githubusercontent.com/57348392/147741051-c093b199-d786-4faa-ac35-6d1faeb913bf.png)
-
+![45_azimuth](https://user-images.githubusercontent.com/57348392/149661052-6bd1bddc-a233-446e-ab98-75e07b76ebc0.png)
 
 ### Find Location (find_loc.ipynb)
 
